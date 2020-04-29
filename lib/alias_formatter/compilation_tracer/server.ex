@@ -5,7 +5,6 @@ defmodule AliasFormatter.CompilationTracer.Server do
     Agent.start_link(fn -> %{} end, name: __MODULE__)
   end
 
-  @spec record(any, any, any, any, any, any) :: :ok
   def record(module_name, module_file, _module_line, alias_line, aliased_module, alias_as) do
     Agent.update(__MODULE__, fn state ->
       update_state(state, module_file, module_name, alias_line, aliased_module, alias_as)

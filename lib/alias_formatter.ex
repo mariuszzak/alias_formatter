@@ -13,11 +13,7 @@ defmodule AliasFormatter do
   end
 
   defp format_aliases(source_code, entries) do
-    source_code_lines =
-      source_code
-      |> String.split("\n")
-
-    Enum.reduce(entries, source_code_lines, &apply_entry/2)
+    Enum.reduce(entries, String.split(source_code, "\n"), &apply_entry/2)
     |> Enum.reject(&is_nil/1)
     |> Enum.join("\n")
   end
